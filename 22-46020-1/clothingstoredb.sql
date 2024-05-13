@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2024 at 05:42 PM
+-- Generation Time: May 14, 2024 at 01:53 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -33,17 +33,18 @@ CREATE TABLE `product` (
   `name` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL,
   `sellerId` int(255) NOT NULL,
-  `price` int(255) NOT NULL DEFAULT 0,
-  `status` varchar(255) NOT NULL
+  `status` varchar(255) NOT NULL,
+  `price` float DEFAULT NULL,
+  `discountedPrice` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `image`, `name`, `category`, `sellerId`, `price`, `status`) VALUES
-(2, 'image.png', 'T-shirt', 'Clothes', 1, 10, 'Pending'),
-(3, 'image.png', 'T-Short', 'Clothes', 2, 15, 'Pending');
+INSERT INTO `product` (`id`, `image`, `name`, `category`, `sellerId`, `status`, `price`, `discountedPrice`) VALUES
+(2, 'image.png', 'T-shirt', 'Clothes', 1, 'Pending', 1000, 500),
+(3, 'image.png', 'T-Short', 'Clothes', 2, 'Pending', 900, 900);
 
 -- --------------------------------------------------------
 
@@ -64,8 +65,8 @@ CREATE TABLE `seller` (
 --
 
 INSERT INTO `seller` (`id`, `username`, `email`, `status`, `totalSales`) VALUES
-(1, 'sellerBhaiya', 'seller@bhaiya.com', 'Pending', 0),
-(2, 'seller2', 'seller2@bhaiya.com', 'Pending', 0);
+(1, 'sellerBhaiya', 'seller@bhaiya.com', 'Pending', 10),
+(2, 'seller2', 'seller2@bhaiya.com', 'Pending', 15);
 
 -- --------------------------------------------------------
 

@@ -62,10 +62,12 @@
 
         <hr>
 
-        <a href="./dashboardView.php">Dashboard</a>
-        <a href="./transactionhistoryView.php">Transaction History</a>
-        <a href="./sellerApprovalView.php">Seller Approval</a>
-        <a href="./productApprovalView.php">Product Approval</a>
+        <a href="./dashboardView.php">Dashboard</a> <br>
+        <a href="./transactionhistoryView.php">Transaction History</a> <br>
+        <a href="./sellerApprovalView.php">Seller Approval</a> <br>
+        <a href="./productApprovalView.php">Product Approval</a> <br>
+        <a href="./productDiscountView.php">Product Discount</a> <br>
+        <a href="./updateProfileView.php">Update Profile</a> <br>
         <a href="../Controller/Logout.php">Logout</a>
     </div>
 

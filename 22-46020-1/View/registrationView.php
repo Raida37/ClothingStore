@@ -41,7 +41,7 @@
 <body>
     <div class="container">
         <h2>Registration</h2>
-        <form id="registrationForm" action="../Controller/registrationController.php" method="POST">
+        <form id="registrationForm" action="../Controller/registrationController.php" method="POST" novalidate>
             <input type="text" name="username" id="username" placeholder="Username">
             <span id="usernameError" class="error"></span>
             <input type="email" name="email" id="email" placeholder="Email">
@@ -52,6 +52,8 @@
             <span id="cpasswordError" class="error"></span>
             <button type="submit" onclick="return validateForm()">Register</button>
         </form>
+        <p>Already Have an Account?</p>
+        <a href="./loginView.php">Log-in</a>
     </div>
 
     <script>

@@ -52,7 +52,7 @@
 <body>
 
 	<fieldset>
-		<form action="../Controller/LoginController.php" method="post">
+		<form action="../Controller/LoginController.php" method="post" novalidate>
 			<label for="username">Username</label>
 			<input type="text" name="username" id="username" value="">
 			<br><br>
@@ -62,6 +62,8 @@
 			<br><br>
 
 			<input type="submit" value="Login" onclick="return validateLogin()">
+			<p>Don't Have an Account?</p>
+			<a href="./registrationView.php">Register</a>
 		</form>
 	</fieldset>
 

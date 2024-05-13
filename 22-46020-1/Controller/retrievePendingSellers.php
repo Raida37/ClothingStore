@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require('../Controller/checkLoggedIn.php');
     require "../Model/connection.php";
     
     $sellerModel = new SellerModel($conn);

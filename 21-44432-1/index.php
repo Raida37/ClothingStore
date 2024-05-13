@@ -1,65 +1,66 @@
+<?php 
+   session_start();
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Sign Up</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
 </head>
 <body>
-    <div class="d-flex justify-content-center align-items-center vh-100">
-    	
-    	<form class="shadow w-450 p-3" 
-    	      action="php/signup.php" 
-    	      method="post" 
-    	      enctype="multipart/form-data" novalidate>
+      <div class="container">
+        <div class="box form-box">
+            <?php 
+             
+              include("php/config.php");
+              if(isset($_POST['submit'])){
+                $email = mysqli_real_escape_string($con,$_POST['email']);
+                $password = mysqli_real_escape_string($con,$_POST['password']);
 
-    		<h4 class="display-4  fs-1">Create Account</h4><br>
-    		<?php if(isset($_GET['error'])){ ?>
-    		<div class="alert alert-danger" role="alert">
-			  <?php echo $_GET['error']; ?>
-			</div>
-		    <?php } ?>
+                $result = mysqli_query($con,"SELECT * FROM users WHERE Email='$email' AND Password='$password' ") or die("Select Error");
+                $row = mysqli_fetch_assoc($result);
 
-		    <?php if(isset($_GET['success'])){ ?>
-    		<div class="alert alert-success" role="alert">
-			  <?php echo $_GET['success']; ?>
-			</div>
-		    <?php } ?>
-		  <div class="mb-3">
-		    <label class="form-label">Full Name</label>
-		    <input type="text" 
-		           class="form-control"
-		           name="fname"
-		           value="<?php echo (isset($_GET['fname']))?$_GET['fname']:"" ?>">
-		  </div>
+                if(is_array($row) && !empty($row)){
+                    $_SESSION['valid'] = $row['Email'];
+                    $_SESSION['username'] = $row['Username'];
+                    $_SESSION['age'] = $row['Age'];
+                    $_SESSION['id'] = $row['Id'];
+                }else{
+                    echo "<div class='message'>
+                      <p>Wrong Username or Password</p>
+                       </div> <br>";
+                   echo "<a href='index.php'><button class='btn'>Go Back</button>";
+         
+                }
+                if(isset($_SESSION['valid'])){
+                    header("Location: home.php");
+                }
+              }else{
 
-		  <div class="mb-3">
-		    <label class="form-label">User name</label>
-		    <input type="text" 
-		           class="form-control"
-		           name="uname"
-		           value="<?php echo (isset($_GET['uname']))?$_GET['uname']:"" ?>">
-		  </div>
+            
+            ?>
+            <header>Login</header>
+            <form action="" method="post">
+                <div class="field input">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" autocomplete="off" required>
+                </div>
 
-		  <div class="mb-3">
-		    <label class="form-label">Password</label>
-		    <input type="password" 
-		           class="form-control"
-		           name="pass">
-		  </div>
+                <div class="field input">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" autocomplete="off" required>
+                </div>
 
-		  <div class="mb-3">
-		    <label class="form-label">Profile Picture</label>
-		    <input type="file" 
-		           class="form-control"
-		           name="pp">
-		  </div>
-		  
-		  <button type="submit" class="btn btn-primary">Sign Up</button>
-		  <a href="login.php" class="link-secondary">Login</a>
-		</form>
-    </div>
+                <div class="field">
+                    
+                    <input type="submit" class="btn" name="submit" value="Login" required>
+                </div>
+                <div class="links">
+                    Don't have account? <a href="register.php">Sign Up Now</a>
+                </div>
+            </form>
+        </div>
+        <?php } ?>
+      </div>
 </body>
 </html>

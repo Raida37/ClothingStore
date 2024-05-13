@@ -219,6 +219,17 @@ class ProductModel {
         return $products;
     }
 
+    public function getAllProducts() {
+        $stmt = $this->dbConnection->prepare("SELECT * FROM product");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            array_push($products, $row);
+        }
+        return $products;
+    }
+
 
     public function approveProduct($id) {
         $stmt = $this->dbConnection->prepare("UPDATE product SET status = 'Approved' WHERE id = ?");
@@ -230,6 +241,13 @@ class ProductModel {
     public function rejectProduct($id) {
         $stmt = $this->dbConnection->prepare("UPDATE product SET status = 'Rejected' WHERE id = ?");
         $stmt->bind_param("i", $id);
+        $result = $stmt->execute();
+        return $result;
+    }
+
+    public function applyDiscount($id, $amount) {
+        $stmt = $this->dbConnection->prepare("UPDATE product SET discountedPrice = (price - (price*(?/100))) WHERE id = ?");
+        $stmt->bind_param("di", $amount, $id);
         $result = $stmt->execute();
         return $result;
     }

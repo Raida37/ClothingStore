@@ -12,9 +12,9 @@ if(isset($_POST['update_profile'])){
    mysqli_query($conn, "UPDATE `user_form` SET name = '$update_name', email = '$update_email' WHERE id = '$user_id'") or die('query failed');
 
    $old_pass = $_POST['old_pass'];
-   $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
-   $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
-   $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
+   $update_pass = mysqli_real_escape_string($conn, ($_POST['update_pass']));
+   $new_pass = mysqli_real_escape_string($conn, ($_POST['new_pass']));
+   $confirm_pass = mysqli_real_escape_string($conn, ($_POST['confirm_pass']));
 
    if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
       if($update_pass != $old_pass){
@@ -39,7 +39,7 @@ if(isset($_POST['update_profile'])){
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>update profile</title>
 
-   <!-- custom css file link  -->
+   <!--css file link-->
    <link rel="stylesheet" href="css/style.css">
 
 </head>

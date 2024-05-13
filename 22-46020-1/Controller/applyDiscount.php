@@ -2,12 +2,13 @@
     require('./checkLoggedIn.php');
 
     $id = $_REQUEST['id'];
+    $amount = $_REQUEST['amount'];
 
     require "../Model/connection.php";
     
-    $sellerModel = new SellerModel($conn);
+    $productModel = new ProductModel($conn);
     
-    $result = $sellerModel->rejectSeller($id);
+    $result = $productModel->applyDiscount($id, $amount);
 
     if ($result) {
         echo "Success";

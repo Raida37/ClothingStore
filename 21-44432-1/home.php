@@ -1,57 +1,67 @@
 <?php 
-session_start();
+   session_start();
 
-if (isset($_SESSION['id']) && isset($_SESSION['fname'])) {
-
-include "db_conn.php";
-include 'php/User.php';
-$user = getUserById($_SESSION['id'], $conn);
-
-
- ?>
+   include("php/config.php");
+   if(!isset($_SESSION['valid'])){
+    header("Location: index.php");
+   }
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Home</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<style type="text/css">
-	.auto-style1 {
-		margin-top: 283px;
-	}
-	</style>
+ 
+    <link rel="stylesheet" href="style.css">
+    <title>Home</title>
 </head>
 <body>
-    <?php if ($user) { ?>
-    <div class="d-flex justify-content-center align-items-center vh-100">
-    	
-    	<div class="shadow w-350 p-3 text-center" style="width: 500px; height: 70px">
-    		<img src="upload/<?=$user['pp']?>"
-    		     class="img-fluid rounded-circle">
-            <h3 class="display-4 " style="height: 0px"><?=$user['fname']?></h3>
-            <form class="auto-style1" method="post" style="height: 130px">
-            <a href="edit.php" class="btn btn-primary" style="height: 38px">
-            	Edit Profile
-            </a>
-             <a href="logout.php" class="btn btn-warning" style="width: 106px; height: 41px">&nbsp;&nbsp;
-                Logout
-            </a>
-				<br><br><br><br>
-				<a href="orders.php" class="btn btn-warning" style="width: 143px; height: 50px">&nbsp;&nbsp;
-                Order List
-            </a>
-       </div>
+    <div class="nav">
+        <div class="logo">
+            <p><a href="home.php">Happy Shopping!</a> </p>
+        </div>
+
+        <div class="right-links">
+
+            <?php 
+            
+            $id = $_SESSION['id'];
+            $query = mysqli_query($con,"SELECT*FROM users WHERE Id=$id");
+
+            while($result = mysqli_fetch_assoc($query)){
+                $res_Uname = $result['Username'];
+                $res_Email = $result['Email'];
+                $res_Age = $result['Age'];
+                $res_id = $result['Id'];
+            }
+            
+            echo "<a href='edit.php?Id=$res_id'>Change Profile</a>";
+            ?>
+
+            <a href="php/logout.php"> <button class="btn">Log Out</button> </a>
+
+        </div>
     </div>
-    <?php }else { 
-     header("Location: login.php");
-     exit;
-    } ?>
+    <main>
+
+       <div class="main-box top">
+          <div class="top">
+            <div class="box">
+                <p>Hello <b><?php echo $res_Uname ?></b>, Welcome</p>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="box">
+                <p>And you are <b><?php echo $res_Age ?> years old</b>.</p> 
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="box">
+                <p>Are You Ready to Sell?!</p> 
+            </div>
+          </div>
+          <a href="list.php"> <button class="btn">Seller List</button> </a>
+
+       </div>
+
+    </main>
 </body>
 </html>
-
-<?php }else {
-	header("Location: login.php");
-	exit;
-} ?>

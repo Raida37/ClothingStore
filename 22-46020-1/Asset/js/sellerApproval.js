@@ -13,7 +13,6 @@ function retrievePendingSellers(){
                                     <td></td> 
                                 </tr>`;
             for(let i=0;i<sellers.length;i++){
-                // sellerContent += `<b> ${sellers[i].id} </b> | ${sellers[i].username} | ${sellers[i].email} | ${sellers[i].status} | <button class='${sellers[i].id}' onclick='approveSeller(event)'>Approve</button>  | <button class='${sellers[i].id}' onclick='rejectSeller(event)'>Reject</button> <hr>`;
                 sellerContent += `<tr>
                                     <td>${sellers[i].id}</td>
                                     <td>${sellers[i].username}</td> 

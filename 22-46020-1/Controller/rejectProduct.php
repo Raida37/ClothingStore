@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require('./checkLoggedIn.php');
 
     $id = $_REQUEST['id'];
 

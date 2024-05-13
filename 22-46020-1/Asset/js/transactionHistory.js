@@ -11,7 +11,7 @@ function retrieveTransactionHistory() {
                                                 <td><b>Product Id</b></td> 
                                                 <td><b>Buyer Id</b></td> 
                                                 <td><b>Seller Id</b></td> 
-                                            </tr>`
+                                            </tr>`;
 
 
             for (let i = 0; i < transactionHistory.length; i++) {

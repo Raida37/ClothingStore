@@ -4,7 +4,7 @@
     
     $productModel = new ProductModel($conn);
 
-    $pendingProducts = $productModel->getPendingProducts();
+    $allProducts = $productModel->getAllProducts();
 
-    echo json_encode($pendingProducts);
+    echo json_encode($allProducts);
 ?>

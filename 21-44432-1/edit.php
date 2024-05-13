@@ -1,89 +1,84 @@
 <?php 
-session_start();
+   session_start();
 
-if (isset($_SESSION['id']) && isset($_SESSION['fname'])) {
-include "db_conn.php";
-include 'php/User.php';
-
-$user = getUserById($_SESSION['id'], $conn);
-
- ?>
+   include("php/config.php");
+   if(!isset($_SESSION['valid'])){
+    header("Location: index.php");
+   }
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Edit Profile</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Change Profile</title>
 </head>
 <body>
-    <?php if ($user) { ?>
+    <div class="nav">
+        <div class="logo">
+            <p><a href="home.php">Happy Shopping!</a> </p>
+        </div>
 
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        
-        <form class="shadow w-450 p-3" 
-              action="php/edit.php" 
-              method="post"
-              enctype="multipart/form-data">
-
-            <h4 class="display-4  fs-1">Edit Profile</h4><br>
-            <!-- error -->
-            <?php if(isset($_GET['error'])){ ?>
-            <div class="alert alert-danger" role="alert">
-              <?php echo $_GET['error']; ?>
-            </div>
-            <?php } ?>
-            
-            <!-- success -->
-            <?php if(isset($_GET['success'])){ ?>
-            <div class="alert alert-success" role="alert">
-              <?php echo $_GET['success']; ?>
-            </div>
-            <?php } ?>
-          <div class="mb-3">
-            <label class="form-label">Full Name</label>
-            <input type="text" 
-                   class="form-control"
-                   name="fname"
-                   value="<?php echo $user['fname']?>">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">User name</label>
-            <input type="text" 
-                   class="form-control"
-                   name="uname"
-                   value="<?php echo $user['username']?>">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Profile Picture</label>
-            <input type="file" 
-                   class="form-control"
-                   name="pp">
-            <img src="upload/<?=$user['pp']?>"
-                 class="rounded-circle"
-                 style="width: 70px">
-            <input type="text"
-                   hidden="hidden" 
-                   name="old_pp"
-                   value="<?=$user['pp']?>" >
-          </div>
-          
-          <button type="submit" class="btn btn-primary">Update</button>
-          <a href="home.php" class="link-secondary">Home</a>
-        </form>
+        <div class="right-links">
+            <a href="#">Change Profile</a>
+            <a href="php/logout.php"> <button class="btn">Log Out</button> </a>
+        </div>
     </div>
-    <?php }else{ 
-        header("Location: home.php");
-        exit;
+    <div class="container">
+        <div class="box form-box">
+            <?php 
+               if(isset($_POST['submit'])){
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $age = $_POST['age'];
 
-    } ?>
+                $id = $_SESSION['id'];
+
+                $edit_query = mysqli_query($con,"UPDATE users SET Username='$username', Email='$email', Age='$age' WHERE Id=$id ") or die("error occurred");
+
+                if($edit_query){
+                    echo "<div class='message'>
+                    <p>Profile Updated!</p>
+                </div> <br>";
+              echo "<a href='home.php'><button class='btn'>Go Home</button>";
+       
+                }
+               }else{
+
+                $id = $_SESSION['id'];
+                $query = mysqli_query($con,"SELECT*FROM users WHERE Id=$id ");
+
+                while($result = mysqli_fetch_assoc($query)){
+                    $res_Uname = $result['Username'];
+                    $res_Email = $result['Email'];
+                    $res_Age = $result['Age'];
+                }
+
+            ?>
+            <header>Change Profile</header>
+            <form action="" method="post">
+                <div class="field input">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" value="<?php echo $res_Uname; ?>" autocomplete="off" required>
+                </div>
+
+                <div class="field input">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" value="<?php echo $res_Email; ?>" autocomplete="off" required>
+                </div>
+
+                <div class="field input">
+                    <label for="age">Age</label>
+                    <input type="number" name="age" id="age" value="<?php echo $res_Age; ?>" autocomplete="off" required>
+                </div>
+                
+                <div class="field">
+                    
+                    <input type="submit" class="btn" name="submit" value="Update" required>
+                </div>
+                
+            </form>
+        </div>
+        <?php } ?>
+      </div>
 </body>
 </html>
-
-<?php }else {
-	header("Location: login.php");
-	exit;
-} ?>

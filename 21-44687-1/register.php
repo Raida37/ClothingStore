@@ -6,8 +6,8 @@ if(isset($_POST['submit'])){
 
    $name = mysqli_real_escape_string($conn, $_POST['name']);
    $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
-   $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
+   $pass = mysqli_real_escape_string($conn, ($_POST['password']));
+   $cpass = mysqli_real_escape_string($conn, ($_POST['cpassword']));
 
    $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
@@ -40,6 +40,7 @@ if(isset($_POST['submit'])){
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>register</title>
 
+   <!--css file link-->
    <link rel="stylesheet" href="css/style.css">
 
 </head>

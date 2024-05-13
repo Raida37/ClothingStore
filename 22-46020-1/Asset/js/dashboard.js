@@ -6,7 +6,7 @@ function retrieveDashboardInformation() {
             let dashboardInformation = JSON.parse(this.responseText);
             let topSellers = dashboardInformation.topSellers;
             document.getElementById('totalProducts').innerHTML = dashboardInformation.totalProducts;
-            document.getElementById('totalProductPrice').innerHTML = dashboardInformation.totalProductPrice;
+            document.getElementById('totalProductPrice').innerHTML = dashboardInformation.totalProductPrice + ' BDT';
             document.getElementById('totalTransactions').innerHTML = dashboardInformation.totalTransactions;
             document.getElementById('totalSellers').innerHTML = dashboardInformation.totalSellers;
             
@@ -15,7 +15,8 @@ function retrieveDashboardInformation() {
                                                 <td><b>Username</b></td> 
                                                 <td><b>Email</b></td> 
                                                 <td><b>Status</b></td> 
-                                    </tr>`
+                                                <td><b>Total Sales</b></td> 
+                                    </tr>`;
 
 
             for (let i = 0; i < topSellers.length; i++) {
@@ -24,6 +25,7 @@ function retrieveDashboardInformation() {
                                                 <td>${topSellers[i].username}</td> 
                                                 <td>${topSellers[i].email}</td> 
                                                 <td>${topSellers[i].status}</td> 
+                                                <td>${topSellers[i].totalSales}</td> 
                                     </tr>`;
             }
 
@@ -36,3 +38,4 @@ function retrieveDashboardInformation() {
 }
 
 retrieveDashboardInformation();
+
