@@ -1,20 +1,18 @@
 <?php
-
-@include 'db_conn.php';
-
+include 'db_conn.php'; 
 session_start();
 
 if(!isset($_SESSION['admin_name'])){
    header('location:login_form.php');
+   exit(); 
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
    
-   <title>admin page</title>
+   <title>accounts page</title>
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="style.css">
@@ -25,12 +23,20 @@ if(!isset($_SESSION['admin_name'])){
 <div class="container">
 
    <div class="content">
-      <h3>hi, <span>admin</span></h3>
-      <h1>welcome <span><?php echo $_SESSION['admin_name'] ?></span></h1>
-      <p>this is an admin page</p>
+      <h1>Welcome, <span><?php echo $_SESSION['admin_name'] ?></span></h1>
+         <br></br>
+      <p>ACCOUNT'S PAGE</p>
+      <br></br>
       <a href="login_form.php" class="btn">login</a>
       <a href="register_form.php" class="btn">register</a>
       <a href="logout.php" class="btn">logout</a>
+      <br></br>
+      <br>
+       <a href="payment_form.php" class="btn">Payment Management</a>
+       <a href="saved_form.php" class="btn">Saved Addresses</a>
+       <a href="shipment_form.php" class="btn">Shipment Management</a>
+    </br>
+    </div>
    </div>
 
 </div>

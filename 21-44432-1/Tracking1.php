@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+include("php/config.php");
+
+if (!isset($_SESSION['valid'])) {
+    header("Location: index.php");
+    exit(); 
+}
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

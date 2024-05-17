@@ -19,7 +19,7 @@ if (isset($_GET['logout'])) {
 <html lang="en">
 <head>
     <link rel="stylesheet" href="mystyle.css">
-    <title>Seller List</title>
+    <title>Reviews</title>
     <style>
         
         .inline-image {
@@ -31,10 +31,8 @@ if (isset($_GET['logout'])) {
         .inline-image img {
             width: 150px; 
             height: auto; 
-        }
 
-      
-        .button {
+       .button {
             display: block; 
             margin-top: 10px; 
             padding: 5px 10px; 
@@ -63,6 +61,7 @@ if (isset($_GET['logout'])) {
         .button:hover {
             background-color: #d70636;
         }
+
     </style>
 </head>
 <body>
@@ -79,57 +78,56 @@ if (isset($_GET['logout'])) {
        <div class="main-box top">
           <div class="bottom">
             <div class="box">
-                <p><b> Seller List </b></p> 
+                <p><b> Reviews </b></p> 
             </div>
           </div>
        </div>
     </main>
 
-    
+    <!-- Inline images with buttons -->
     <div class="inline-image">
        
         <img src="makeupbox.jpg">
         <p class="image-name">MakeUp Box</p>
-        <button class="button" onclick="window.location.href='Tracking1.php'">Track Order</button>
+       <p><strong>Review Rating:</strong> 4.9</p>
     </div>
 
     <div class="inline-image">
         <img src="HANGBAG.jpg">
-        <p class="image-name">Luxury HandBag</p>
-        <button class="button" onclick="window.location.href='Tracking2.php'">Track Order</button>
+        <p><strong>Review Rating:</strong> 4.2</p>
     </div>
 
     <div class="inline-image">
        
         <img src="Dress.webp">
         <p class="image-name">Modern Women's Dress</p>
-        <button class="button" onclick="window.location.href='Tracking3.php'">Track Order</button>
+        <p><strong>Review Rating:</strong> 3.5</p>
     </div>
 
     <div class="inline-image">
         <img src="leatherjacket.webp">
         <p class="image-name">Women's Leather Jacket</p>
-        <button class="button" onclick="window.location.href='Tracking4.php'">Track Order</button>
+       <p><strong>Review Rating:</strong> 4.8</p>
     </div>
 
     <div class="inline-image">
        
         <img src="beats.webp">
         <p class="image-name">Beats Headphones</p>
-        <button class="button" onclick="window.location.href='Tracking5.php'">Track Order</button>
+        <p><strong>Review Rating:</strong> 4</p>
     </div>
 
     <div class="inline-image">
         <img src="heels.jpg">
         <p class="image-name">High Heel Shoes</p>
-        <button class="button" onclick="window.location.href='Tracking6.php'">Track Order</button>
+        <p><strong>Review Rating:</strong> 4.1</p>
     </div>
 
     <div class="inline-image">
        
         <img src="powerbank.webp">
         <p class="image-name">REFLECTS PowerBank</p>
-        <button class="button" onclick="window.location.href='Tracking7.php'">Track Order</button>
+      <p><strong>Review Rating:</strong> 3.9</p>
     </div>
 
    

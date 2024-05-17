@@ -51,24 +51,13 @@ if (isset($_GET['logout'])) {
     <main>
 
        <div class="main-box top">
-          <div class="top">
-            <div class="box">
-                <p>Hello <b><?php echo $res_Uname ?></b>, Welcome</p>
-            </div>
-          </div>
+          
           <div class="bottom">
             <div class="box">
-                <p>And you are <b><?php echo $res_Age ?> years old</b>.</p> 
+                <p>Successfully Added!</p> 
             </div>
           </div>
-          <div class="bottom">
-            <div class="box">
-                <p>Ready to Sell?!</p> 
-            </div>
-          </div>
-          <a href="list.php"> <button class="btn">Seller List</button> </a>
-          <a href="inventory.php"> <button class="btn">Inventory List</button> </a>
-          <a href="reviews.php"> <button class="btn">Reviews</button> </a>
+          <a href="inventory.php"> <button class="btn">Back</button> </a>
 
        </div>
 

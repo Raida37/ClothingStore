@@ -39,6 +39,36 @@ if(isset($_POST['submit'])){
 <head>
    
    <title>register form</title>
+    <script>
+        function validateForm() {
+            var name = document.forms["registrationForm"]["name"].value;
+            var email = document.forms["registrationForm"]["email"].value;
+            var password = document.forms["registrationForm"]["password"].value;
+            var cpassword = document.forms["registrationForm"]["cpassword"].value;
+
+            if (name == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+            if (email == "") {
+                alert("Email must be filled out");
+                return false;
+            }
+            if (password == "") {
+                alert("Password must be filled out");
+                return false;
+            }
+            if (cpassword == "") {
+                alert("Confirm Password must be filled out");
+                return false;
+            }
+            if (password != cpassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+            return true;
+        }
+    </script>
 
    
    <link rel="stylesheet" href="style.css">
@@ -63,7 +93,7 @@ if(isset($_POST['submit'])){
       <input type="password" name="cpassword" required placeholder="confirm your password">
       <select name="user_type">
          <option value="user">user</option>
-         <option value="admin">admin</option>
+         <option value="admin">accounts</option>
       </select>
       <input type="submit" name="submit" value="register now" class="form-btn">
       <p>already have an account? <a href="login_form.php">login now</a></p>
